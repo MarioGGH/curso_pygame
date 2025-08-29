@@ -1,5 +1,11 @@
 # ⚙️ Demo 1 para aprender a usar PyGame.
 ---
+
+### Adicional instalar pygame
+```sh
+pip install pygame
+```
+
 ## 1. Importacion de las librerias necesarias.
 
 ```python
