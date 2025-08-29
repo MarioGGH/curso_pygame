@@ -1,36 +1,30 @@
 import pygame
 import sys
 
-# Inciamos pygame
 pygame.init()
 
-# Creamos la pantalla
-ANCHO, ALTO = 800, 600 
+# Creamos la pantalla 
+ANCHO, ALTO = 800, 600
 ventana = pygame.display.set_mode((ANCHO, ALTO))
-pygame.display.set_caption("Ejercicio 2")
+pygame.display.set_caption("Ejercicio 3")
 
 # Controlamos los fps
 clock = pygame.time.Clock()
 
-# Asignamos la posicion del cuadrado
 x, y = 100, 100
-# Asigamos la velocidad a la que se movera el cuadrado
 vel = 5
-# Asignamos el color del fondo
-col_fondo = 0, 165, 255
-# Asignamos el color del cuadrado
+ancho_c, altura_c = 50, 50 
+col_fondo =  0, 165, 255
 col_cuadrado = 0, 255, 0
-# Asigamos ancho y alura del cuadrado
-ancho, altura = 50, 50
+
 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-    # teclas que el usuario presionara
+            
     teclas = pygame.key.get_pressed()
-    
     if teclas[pygame.K_LEFT]:
         x -= vel
     if teclas[pygame.K_RIGHT]:
@@ -40,9 +34,12 @@ while True:
     if teclas[pygame.K_DOWN]:
         y += vel
     
-    # Dibujamos la ventana y el cuadrado
+    # Se mantiene al usuario dentro de la pantalla
+    x = max(0, min(ANCHO - ancho_c, x))
+    y = max(0, min(ALTO - altura_c, y))
+    
     ventana.fill((col_fondo))
-    pygame.draw.rect(ventana, (col_cuadrado), (x, y, ancho, altura))
+    pygame.draw.rect(ventana, (col_cuadrado) , (x, y, ancho_c, altura_c))
     
     pygame.display.flip()
     clock.tick(60)
